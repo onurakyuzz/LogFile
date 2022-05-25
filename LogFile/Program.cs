@@ -7,7 +7,7 @@ public class FileExample
 {
     class User
     {
-        public int Password { get; set; }
+        public string Password { get; set; }
         public string UserName { get; set; }
     }
     private class Log
@@ -22,9 +22,11 @@ public class FileExample
     {
         #region Kullanıcı bilgilerinin json formatında oluşrulması
         User user = new User();
-        user.UserName = "onur";
-        user.Password = 1234;
-        string userinfo = JsonSerializer.Serialize(user);
+        Console.Write("Kullanıcı adı:");
+        user.UserName = Console.ReadLine();
+        Console.Write("Şifre:");
+        user.Password = Console.ReadLine();
+        var userinfo = JsonSerializer.Serialize(user);
         FileStream userwrite = new FileStream(@"D:\deneme\userinfo\UserInfo.json", FileMode.OpenOrCreate, FileAccess.Write);
         StreamWriter sw = new StreamWriter(userwrite);
         sw.WriteLine(userinfo);
@@ -43,7 +45,7 @@ public class FileExample
             Console.Clear();
             Log log = new Log();
             log.UserId = 100;
-            log.UserN = "onur";
+            log.UserN = user.UserName;
             log.LogInDate = DateTime.Today;
             log.LogOutDate = DateTime.Now;
 
